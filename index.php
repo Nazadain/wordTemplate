@@ -1,14 +1,28 @@
 <?php
 session_start();
-include $_SERVER["DOCUMENT_ROOT"].'/vendor/autoload.php';
-$phpWord = new \PhpOffice\PhpWord\PhpWord();
-$_doc = new \PhpOffice\PhpWord\TemplateProcessor('local-template.docx');
+$title = 'Логин';
+$fname = __FILE__;
 
-$_doc->setValue('course', "2"); 
-$_doc->setValue('group', "1121б"); 
-$_doc->setValue('fullName', "Пономаренко Егор Андреевич"); 
+function redirect($location) {
+    header("Location: $location");
+    exit;
+}
 
-$img_Dir = $_SERVER['DOCUMENT_ROOT']."/"; 
-@mkdir($img_Dir, 0777);
-$file = str_replace("/","-", "Договор №".date("d-m-Y")).".docx";
-$_doc->saveAs($img_Dir.$file);
+if($_SESSION['user'] != '') {
+    redirect('/main.php');
+}
+
+require_once "blocks/header.php";
+?>
+
+<h1>Логин</h1>
+<form action="checks/check-login.php" method="post">
+    <input type="text" name="username" placeholder="Логин" value="<?=$_SESSION['username']?>" class="form-control">
+    <input type="password" name="password" placeholder="Пароль" class="form-control mt-1">
+    <span class="text-danger"><?=$_SESSION['error_login']?></span><br>
+    <input type="submit" value="Отправить" class="btn btn-success mt-1 mb-2">
+</form>
+
+<?php
+require_once "blocks/footer.php";
+?>
