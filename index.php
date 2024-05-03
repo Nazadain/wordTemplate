@@ -2,17 +2,13 @@
 session_start();
 $title = 'Логин';
 $fname = __FILE__;
+require_once "blocks/header.php";
 
-function redirect($location) {
-    header("Location: $location");
+if($_SESSION['user'] != '') {
+    header("Location: main.php");
     exit;
 }
 
-if($_SESSION['user'] != '') {
-    redirect('/main.php');
-}
-
-require_once "blocks/header.php";
 ?>
 
 <h1>Логин</h1>

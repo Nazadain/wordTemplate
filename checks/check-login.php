@@ -41,7 +41,7 @@ $password = trim(md5($_POST['password']));
 $_SESSION['username'] = $username;
 
 if(IsInArray($username, $dbArr)) {
-    $user = DbParse($mysql->query("SELECT `username`, `password`, `role_id` FROM `user` WHERE `username` = '$username'"));
+    $user = DbParse($mysql->query("SELECT `username`, `password`, `role_name` FROM `user` WHERE `username` = '$username'"));
     if(IsInArray($password, $user)) {
         unset($_SESSION['username']);
         $_SESSION['user'] = $username;
