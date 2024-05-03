@@ -1,38 +1,17 @@
 <?php
 session_start();
+
+require_once "../blocks/functions.php";
     
 unset($_SESSION['error_login']);
 unset($_SESSION['user']);
 unset($_SESSION['role']);
-    
 
 $mysql = new mysqli("localhost", "root", "", "wordTemplateDb");
 $mysql->query("SET NAMES 'utf8'");
     
 $dbUsers = $mysql->query("SELECT * FROM `user`");
 $dbArr = [];
-
-function DbParse($database) {
-    while($row = $database->fetch_assoc()){
-        $arr[] = $row;
-    }
-    return $arr;
-}
-
-function IsInArray($value, $arr) {
-    foreach ($arr as $key => $arr_value) {
-        foreach ($arr_value as $k => $v) {
-            if ($v == $value) {
-                return true;
-            }   
-        }   
-    }
-    return false;
-}
-function redirect($location) {
-    header("Location: $location");
-    exit;
-}
 
 $dbArr = DbParse($dbUsers);
 

@@ -1,4 +1,6 @@
 <?php
+require_once "blocks/functions.php";
+
 if(basename("$fname") != 'index.php' && $_SESSION['user'] == '') {
     header('Location: /index.php');
     exit();
