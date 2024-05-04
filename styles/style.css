@@ -1,0 +1,16 @@
+header {
+    text-align: center;
+}
+header a {
+    text-decoration: none;
+    font-size: larger;
+}
+header a:hover {
+    color: red;
+    transition: 0.25s;
+}
+.container {
+    width: 20%;
+    margin: 0 auto;
+    text-align: center;
+}
