@@ -10,4 +10,4 @@ WordTemplate - веб-сервис, который помогает быстро
 Связаться с нами!
 
 # Используемые технологии
-**PHP | MYSQL | JAVASCRIPT | C++**
+**PHP | MYSQL | JAVASCRIPT | BootStrap5 | HTML | CSS**
