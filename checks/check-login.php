@@ -20,11 +20,12 @@ $password = trim(md5($_POST['password']));
 $_SESSION['username'] = $username;
 
 if(IsInArray($username, $dbArr)) {
-    $user = DbParse($mysql->query("SELECT `username`, `password`, `role_name` FROM `user` WHERE `username` = '$username'"));
+    $user = DbParse($mysql->query("SELECT `id`, `password`, `role_name` FROM `user` WHERE `username` = '$username'"));
     if(IsInArray($password, $user)) {
         unset($_SESSION['username']);
+        $_SESSION['userId'] = $user[0]['id'];
         $_SESSION['user'] = $username;
-        $_SESSION['role'] = $user[0]['role_id'];
+        $_SESSION['role'] = $user[0]['role_name'];
         redirect('/index.php');
     } else {
         $_SESSION['error_login'] = 'Неправильный логин или пароль';
